@@ -53,8 +53,12 @@ def compute_hash(filepath):
 
 
 def download(url, dest):
-    wget = '/usr/local/bin/wget %s -O %s' % (url, dest)
-    subprocess.call(wget.split())
+    command = 'wget %s -O %s' % (url, dest)
+    try :
+        subprocess.call(command, shell=True)
+    except:
+        tkMessageBox.showinfo('', 'wget not found') 
+        sys.exit(1)
 
 
 def subtitle_info(moviehash, moviebytesize):
